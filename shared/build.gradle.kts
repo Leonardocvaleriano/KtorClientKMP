@@ -26,6 +26,21 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+            // Ktor Client Dependencies
+            implementation(libs.ktor.client.core)
+
+            // Coroutines to perform network requests without block the main thread
+            implementation(libs.kotlinx.coroutines.core)
+        }
+        androidMain.dependencies {
+            // Ktor Client Dependencies - Engine for Android
+            // A specific platform may require a specific engine that processes network requests.
+            implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            // Ktor Client Dependencies - Engine for iOS
+            // A specific platform may require a specific engine that processes network requests.
+            implementation(libs.ktor.client.darwin)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
