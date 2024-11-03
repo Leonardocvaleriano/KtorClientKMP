@@ -1,9 +1,15 @@
 package com.codeplace.ktorclientkmp
 
-class Greeting {
-    private val platform: Platform = getPlatform()
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 
-    fun greet(): String {
-        return "Hello, ${platform.name}!"
+class Greeting {
+    private val client = HttpClient()
+
+    suspend fun greeting(): String {
+        val response = client.get("https://ktor.io/")
+        return response.bodyAsText()
     }
+
 }
